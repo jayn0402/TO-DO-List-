@@ -6,10 +6,41 @@
     <title>To do List</title>
 </head>
 <body>
+    <nav id="nav"><button id="theme">Theme</button></nav>
     <div class="container">
     <span><input type="text" placeholder="Enter your work details"></span>
-    <span><button id="add">Add</button></span>
+    <span><button id="add" >Add</button></span>
     <span><button id="myList">My List</button></span>
     </div>
+      <script>
+       let item = document.querySelector('input[type="text"]');
+      let addtolist = document.getElementById('add');
+
+      // Create a <ul> element outside the event listener so it is only created once
+      let itemlist = document.createElement("ul");
+      itemlist.style.listStyleType = "none";
+
+      document.body.appendChild(itemlist);  // Append the <ul> to the body (or container)
+
+      addtolist.addEventListener('click', function () {
+        let itemValue = item.value.trim();
+
+        if (itemValue === "") {
+          alert("Please enter a task!");
+        } else {
+          // Create a new <li> element
+          let li = document.createElement("li");
+          li.innerHTML = itemValue;  // Set the content of the <li> to the input value
+
+          // Append the <li> to the <ul>
+          itemlist.appendChild(li);
+
+          // Optionally clear the input after adding the item
+          item.value = "";
+        }
+      });
+        
+
+      </script>
 </body>
 </html>
