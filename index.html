@@ -1,46 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To do List</title>
+  <title>To- Do List</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-    <nav id="nav"><button id="theme">Theme</button></nav>
-    <div class="container">
-    <span><input type="text" placeholder="Enter your work details"></span>
-    <span><button id="add" >Add</button></span>
-    <span><button id="myList">My List</button></span>
+  <nav class="dropdown">
+    <button class="dropbtn">Themes</button>
+    <div class="dropdown-content">
+      <div id="theme1">Theme-1</div>
+      <div id="theme2">Theme-2</div>
+      <div id="theme3">Theme-3</div>
     </div>
-      <script>
-       let item = document.querySelector('input[type="text"]');
-      let addtolist = document.getElementById('add');
+  </nav>
+  <div class="container">
+    <span><input type="text" placeholder="Enter your work details"></span>
+    <span><button id="add">Add</button></span>
+    <span><button id="myList">My List</button></span>
+  </div>
+  <script>
+    let item = document.querySelector('input[type="text"]');
+    let addtolist = document.getElementById('add');
 
-      // Create a <ul> element outside the event listener so it is only created once
-      let itemlist = document.createElement("ul");
-      itemlist.style.listStyleType = "none";
+    // Create a <ul> element outside the event listener so it is only created once
+    let itemlist = document.createElement("ul");
+    itemlist.style.listStyleType = "none";
 
-      document.body.appendChild(itemlist);  // Append the <ul> to the body (or container)
+    document.body.appendChild(itemlist);  // Append the <ul> to the body (or container)
 
-      addtolist.addEventListener('click', function () {
-        let itemValue = item.value.trim();
 
-        if (itemValue === "") {
-          alert("Please enter a task!");
-        } else {
-          // Create a new <li> element
-          let li = document.createElement("li");
-          li.innerHTML = itemValue;  // Set the content of the <li> to the input value
+    addtolist.addEventListener('click', function () {
+      let itemValue = item.value.trim();
 
-          // Append the <li> to the <ul>
-          itemlist.appendChild(li);
+      if (itemValue === "") {
+        alert("Please enter a task!");
+      } else {
+        // Create a new <li> element
+        let li = document.createElement("li");
+        li.innerHTML = itemValue;  // Set the content of the <li> to the input value
 
-          // Optionally clear the input after adding the item
-          item.value = "";
-        }
-      });
-        
+        // Append the <li> to the <ul>
+        itemlist.appendChild(li);
 
-      </script>
+        // Optionally clear the input after adding the item
+        item.value = "";
+
+        // Create a remove <button> outside the event listener so its only created once
+        let remove = document.createElement("button");
+        remove.textContent = 'Remove' // Sets the button label
+        remove.className = 'removebtn'
+
+        // Removes the added list item for the ul 
+        remove.addEventListener('click', function () {
+          itemlist.removeChild(li);
+        })
+
+        // Append button into li
+        li.appendChild(remove);
+      }
+    });
+
+
+    // making toggle of te themes 
+    document.getElementById('theme1').addEventListener('click', () => {
+      alert('Theme-1 clicked!');
+    });
+    document.getElementById('theme2').addEventListener('click', () => {
+      alert('Theme-2 clicked!');
+    });
+    document.getElementById('theme3').addEventListener('click', () => {
+      alert('Theme-3 clicked!');
+    });
+
+  </script>
 </body>
+
 </html>
