@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My-List</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
@@ -17,9 +18,28 @@
     <script>
         const params = new URLSearchParams(window.location.search);
         const content = params.get('data');
-        if (content) {
-            document.getElementById('listarea').innerHTML = decodeURIComponent(content);
-        }
+        const bg = params.get('bg');
+  
+    if (bg) {
+      document.body.style.backgroundImage = `url('${decodeURIComponent(bg)}')`;
+      document.body.style.backgroundSize = "cover";
+    }
+
+    if (content) {
+      const decoded = decodeURIComponent(content);
+      document.getElementById('listarea').innerHTML = decoded;
+
+      // Now reattach remove button functionality
+      const removeButtons = document.querySelectorAll('.removebtn');
+      removeButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          const li = this.closest('li');
+          if (li) {
+            li.remove();
+          }
+        });
+      });
+    }
 
     </script>
 

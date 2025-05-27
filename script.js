@@ -53,34 +53,40 @@ addtolist.addEventListener('click', function () {
     }
 });
 
+//backgroundtheme variable craetion
+let backgroundtheme = '';
 
 // making toggle of te themes and changing the background images
 
 document.getElementById('default').addEventListener('click', () => {
     alert('Default Theme clicked!');
-    document.body.style.backgroundImage = "url('https://i.ytimg.com/vi/EjLKIeqDmXU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBdoBg8A1TwSODYH3P3RSKOMvELRg')";
+    backgroundtheme = "https://i.ytimg.com/vi/EjLKIeqDmXU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBdoBg8A1TwSODYH3P3RSKOMvELRg";
+    document.body.style.backgroundImage = `url('${backgroundtheme}')`;
     document.body.style.backgroundSize = "cover"; // Optional, to make sure image covers the full screen
 });
 document.getElementById('theme1').addEventListener('click', () => {
     alert('Nature Theme clicked!');
-    document.body.style.backgroundImage = "url('https://marketplace.canva.com/EAGDYZWPJyc/1/0/1600w/canva-green-and-yellow-simple-nature-lake-desktop-wallpaper-oO_xIwyw0KM.jpg')";
+    backgroundtheme = "https://marketplace.canva.com/EAGDYZWPJyc/1/0/1600w/canva-green-and-yellow-simple-nature-lake-desktop-wallpaper-oO_xIwyw0KM.jpg";
+    document.body.style.backgroundImage = `url('${backgroundtheme}')`;
     document.body.style.backgroundSize = "cover"; // Optional, to make sure image covers the full screen
 });
 document.getElementById('theme2').addEventListener('click', () => {
     alert('Love Theme clicked!');
-    document.body.style.backgroundImage = "url('https://png.pngtree.com/thumb_back/fh260/background/20230208/pngtree-heart-background-in-orange-symbol-of-love-romantic-and-valentine-concept-image_1541546.jpg')";
+    backgroundtheme = "https://png.pngtree.com/thumb_back/fh260/background/20230208/pngtree-heart-background-in-orange-symbol-of-love-romantic-and-valentine-concept-image_1541546.jpg";
+     document.body.style.backgroundImage = `url('${backgroundtheme}')`;
     document.body.style.backgroundSize = "cover"; // Optional, to make sure image covers the full screen
 });
 document.getElementById('theme3').addEventListener('click', () => {
     alert('Gym theme clicked!');
-    document.body.style.backgroundImage = "url('https://png.pngtree.com/thumb_back/fh260/background/20240329/pngtree-rows-of-dumbbells-in-the-gym-image_15662386.jpg')";
+    backgroundtheme = "https://png.pngtree.com/thumb_back/fh260/background/20240329/pngtree-rows-of-dumbbells-in-the-gym-image_15662386.jpg";
+   document.body.style.backgroundImage = `url('${backgroundtheme}')`;
     document.body.style.backgroundSize = "cover"; // Optional, to make sure image covers the full screen
 });
 
-// saving in mylist html file
-
+// Function to send data to mylist.html
 function sendData() {
     const content = encodeURIComponent(document.getElementById('listarea').innerHTML);
-    window.location.href = 'mylist.html?data=' + content;
+    // send background theme as well
+    const backdrop = encodeURIComponent(backgroundtheme);
+    window.location.href = `mylist.html?data=${content}&bg=${backdrop}`;
 }
-
